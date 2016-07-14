@@ -19,6 +19,8 @@ public class Account_Frag extends Fragment_Controller
 {
     private ListView lvMenu;
 
+    /*test git*/
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -44,7 +46,7 @@ public class Account_Frag extends Fragment_Controller
             {
                 String item = menu_obj[position];
 
-                if(item == "Edit Merchant")
+                if(item.equals("Edit Merchant"))
                 {
                     Intent in = new Intent(getActivity(), Merchant_Edit.class);
                     in.putExtra("system_controller", system_controller);
@@ -52,7 +54,7 @@ public class Account_Frag extends Fragment_Controller
                     in.putExtra("deal_controller", deal_controller);
                     startActivity(in);
                 }
-                else if(item == "Edit Contact")
+                else if(item.equals("Edit Contact"))
                 {
                     Intent in = new Intent(getActivity(), Contact_Edit.class);
                     in.putExtra("system_controller", system_controller);
@@ -60,7 +62,7 @@ public class Account_Frag extends Fragment_Controller
                     in.putExtra("deal_controller", deal_controller);
                     startActivity(in);
                 }
-                else if(item == "Credit Cards")
+                else if(item.equals("Credit Cards"))
                 {
                     Intent in = new Intent(getActivity(), Credit_Cards.class);
                     in.putExtra("system_controller", system_controller);
@@ -68,7 +70,7 @@ public class Account_Frag extends Fragment_Controller
                     in.putExtra("deal_controller", deal_controller);
                     startActivity(in);
                 }
-                else if(item == "Get the Meddyl App!")
+                else if(item.equals("Get the Meddyl App!"))
                 {
                     Intent in = new Intent(getActivity(), Customer_App.class);
                     in.putExtra("system_controller", system_controller);
@@ -76,7 +78,7 @@ public class Account_Frag extends Fragment_Controller
                     in.putExtra("deal_controller", deal_controller);
                     startActivity(in);
                 }
-                else if(item == "Log Out")
+                else if(item.equals("Log Out"))
                 {
                     Utils.deleteCache(getActivity().getApplicationContext());
 
