@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvName"
+        android:layout_marginTop="@dimen/small_space"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/edtCode"
+        style="@style/text_view_dark_gray_19" />
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvPhone"
+        android:layout_marginTop="@dimen/small_space"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/txvName"
+        style="@style/text_view_dark_gray_19" />
+
+    <org.droidparts.widget.ClearableEditText
+        android:id="@+id/edtEmail"
+        android:hint="Email"
+        android:textColorHint="@color/light_gray"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/txvPhone"
+        style="@style/edit_text_email"/>
+
+    <org.droidparts.widget.ClearableEditText
+        android:id="@+id/edtPassword"
+        android:hint="Password"
+        android:textColorHint="@color/light_gray"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/edtEmail"
+        style="@style/edit_text_password"/>
+
+    <org.droidparts.widget.ClearableEditText
+        android:id="@+id/edtPasswordConfirm"
+        android:hint="Password Confirm"
+        android:textColorHint="@color/light_gray"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/edtPassword"
+        style="@style/edit_text_password"/>
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvTerms"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/edtPasswordConfirm"
+        style="@style/text_view_blue_18"
+        android:text="By clicking next, I agree to Meddyl's Terms and Conditions"/>
+
+</android.support.percent.PercentRelativeLayout>

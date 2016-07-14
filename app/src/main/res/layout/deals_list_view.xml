@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="14dp"
+    android:background="@color/white">
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvIssued"
+        style="@style/text_view_dark_gray_19"
+        android:text="Issued on 12/24/2016"/>
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvDeal"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/txvIssued"
+        style="@style/text_view_dark_gray_19"
+        android:text=""/>
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvCertificates"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/txvDeal"
+        style="@style/text_view_dark_gray_19"
+        android:text="250 certificates issued"/>
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvStatus"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/txvCertificates"
+        style="@style/text_view_dark_gray_19"
+        android:text="Pending Approval"/>
+
+
+    <ImageView
+        android:id="@+id/imgDealImage"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="fitXY"
+/>
+
+</RelativeLayout>

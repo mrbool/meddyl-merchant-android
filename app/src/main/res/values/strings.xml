@@ -1,0 +1,87 @@
+<resources>
+    // app variables
+    <string name="app_name">Merchant</string>
+    <string name="title_activity_main__view">Main_View</string>
+
+
+    <string name="done">DONE</string>
+
+
+    <!-- These strings are only for our CUSTOM error activity, if you are using the default activity, they are not needed! -->
+    <string name="error_title">Something went wrong!</string>
+    <string name="error_occurred">An error occurred. We\'re deeply sorry.</string>
+    <string name="error_details">Error details:</string>
+    <string name="unknown_exception">Unknown exception</string>
+    <string name="restart_app">Restart app</string>
+    <string name="close_app">Close app</string>
+
+    <!-- Main Screen -->
+    <string name="main_view_button_log_in">Log In</string>
+    <string name="main_view_button_register">Register</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!-- Certificate Lookup Screen -->
+    <string name="certificate_lookup_text_view_header">Enter a certificate code below</string>
+
+    <!-- Credit Cards Screen -->
+    <string name="credit_cards_text_view_no_cards">You have no cards on file</string>
+
+    <!-- Customer App Screen -->
+    <string name="customer_app_text_view_get_app1">Get the Meddyl App!</string>
+    <string name="customer_app_text_view_get_app2">Install the Meddyl app and start experiencing the best local deals!</string>
+    <string name="customer_app_button_install">Install</string>
+
+    <!-- Deals Screen -->
+    <string name="deals_text_view_no_deals_1">You have not posted any deals</string>
+    <string name="deals_text_view_no_deals_2">Pull down to refresh</string>
+
+    <!-- Login Screen -->
+    <string name="login_button_login">Log In</string>
+
+    <!-- Forgot_Password Screen -->
+    <string name="forgot_password_text_view_header">Enter your email address and we\'ll send you a link to rest your password</string>
+    <string name="forgot_password_button_reset_password">Reset Password</string>
+
+    <!-- Merchant_Info Screen -->
+    <string name="spinner">Resend Code</string>
+
+    <!-- Register_Logo Screen -->
+    <string name="register_logo_button_cancel">Cancel</string>
+    <string name="register_logo_button_crop">Crop &amp; Save</string>
+
+    <!-- Register_Validate Screen -->
+    <string name="register_validate_button_resend_code">Resend Code</string>
+
+    <!-- Register_Merchant Screen -->
+    <string name="merchant_info_text_location_label">LOCATION</string>
+    <string name="merchant_info_text_directions">Directions</string>
+    <string name="merchant_info_text_website">Website</string>
+
+    <!-- Deal_Info Screen -->
+    <string name="deal_info_text_deal_label">DEAL</string>
+    <string name="deal_info_text_expiration_label">EXPIRATION DATE</string>
+    <string name="deal_info_text_status_label">STATUS</string>
+    <string name="deal_info_button_validate">Validate Deal</string>
+    <string name="deal_info_text_stats_label">STATS</string>
+    <string name="deal_info_text_fine_print_label">FINE PRINT</string>
+    <string name="deal_info_button_modify">Modify</string>
+    <string name="deal_info_button_cancel">Cancel</string>
+
+    <!-- Credit_Card_Add Screen -->
+    <string name="credit_card_add_button_add">Add Card</string>
+
+    <!-- Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#FF0000</color>
+    <color name="black">#000000</color>
+    <color name="dark_gray">#565A5C</color>
+    <color name="light_gray">#c2b098</color>
+    <color name="gray_pink">#E3D8DD</color>
+    <color name="desaturated_blue">#324F72</color>
+    <string name="title_activity_register__validate">Register_Validate</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

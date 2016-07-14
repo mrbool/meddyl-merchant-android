@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvHeader"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        style="@style/text_view_dark_gray_19"
+        android:text="Tap the image to change your logo"/>
+
+    <ImageView
+        android:id="@+id/imvDeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="50dp"
+        android:height="50dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txvHeader"
+        android:src="@drawable/deal_image_placeholder" />
+
+</android.support.percent.PercentRelativeLayout>

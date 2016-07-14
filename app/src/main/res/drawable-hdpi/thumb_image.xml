@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape>
+            <size
+                android:height="40dp"
+                android:width="40dp" />
+
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item android:height="@dimen/big_space" android:width="@dimen/big_space" android:drawable="@drawable/thumb"/>
+
+</layer-list>

@@ -1,0 +1,202 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.gtsoft.meddyl.merchant.views.object.Deal_Create_Frag">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/small_space" >
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvPercentOffLabel"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/small_space"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="Percentage Off" />
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvPercentOff"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/small_space"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_marginRight="@dimen/small_space"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="50 %" />
+
+                <SeekBar
+                    android:id="@+id/skbPercentOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_space"
+                    android:layout_marginBottom="@dimen/big_space"
+                    android:layout_below="@+id/txvPercentOffLabel"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/rloMaxDollar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/small_space" >
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvMaxDollarLabel"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/big_space"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="Max Dollar Amount" />
+
+                <ImageView
+                    android:id="@+id/imvQuestionMaxDollar"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txvMaxDollarLabel"
+                    android:layout_toRightOf="@+id/txvMaxDollarLabel"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:src="@drawable/question_mark" />
+
+                <org.droidparts.widget.ClearableEditText
+                    android:id="@+id/edtMaxDollar"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/imvQuestionMaxDollar"
+                    android:layout_toRightOf="@+id/imvQuestionMaxDollar"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_marginRight="@dimen/small_space"
+                    android:background="@drawable/edit_text_border_format"
+                    style="@style/edit_text_number" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/small_space" >
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvCertQtyLabel"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/big_space"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="Certificate Quantity" />
+
+                <ImageView
+                    android:id="@+id/imvQuestionCertQty"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txvCertQtyLabel"
+                    android:layout_toRightOf="@+id/txvCertQtyLabel"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:src="@drawable/question_mark" />
+
+                <org.droidparts.widget.ClearableEditText
+                    android:id="@+id/edtCertQty"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/imvQuestionCertQty"
+                    android:layout_toRightOf="@+id/imvQuestionCertQty"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_marginRight="@dimen/small_space"
+                    android:background="@drawable/edit_text_border_format"
+                    style="@style/edit_text_number" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/small_space" >
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvExpirationDateLabel"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/big_space"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="Expiration Date" />
+
+                <ImageView
+                    android:id="@+id/imvQuestionExp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txvExpirationDateLabel"
+                    android:layout_toRightOf="@+id/txvExpirationDateLabel"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:src="@drawable/question_mark" />
+
+                <org.droidparts.widget.ClearableEditText
+                    android:id="@+id/edtExpirationDate"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/imvQuestionExp"
+                    android:layout_toRightOf="@+id/imvQuestionExp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_marginRight="@dimen/small_space"
+                    android:background="@drawable/edit_text_border_format"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

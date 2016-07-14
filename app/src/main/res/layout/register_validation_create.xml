@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <!--tools:context="com.gtsoft.meddyl.merchant.views.object.Register_Validation_Create"-->
+    <!--<com.roughike.bottombar.BottomBar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></com.roughike.bottombar.BottomBar>-->
+
+
+    <LinearLayout
+        android:id="@+id/layName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <org.droidparts.widget.ClearableEditText
+            android:id="@+id/edtFirstName"
+            android:hint="First Name"
+            android:layout_marginTop="@dimen/small_space"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            style="@style/edit_text_name" />
+
+        <org.droidparts.widget.ClearableEditText
+            android:id="@+id/edtLastName"
+            android:hint="Last Name"
+            android:layout_marginTop="@dimen/small_space"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            style="@style/edit_text_name" />
+
+
+    </LinearLayout>
+
+    <org.droidparts.widget.ClearableEditText
+        android:id="@+id/edtEmail"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/layName"
+        style="@style/edit_text_email" />
+
+    <org.droidparts.widget.ClearableEditText
+        android:id="@+id/edtPhone"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_below="@+id/edtEmail"
+        android:hint="Cell Phone"
+        style="@style/edit_text_phone" />
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvPhoneNote"
+        android:layout_below="@+id/edtPhone"
+        android:paddingTop="2dp"
+        android:layout_marginTop="@dimen/small_space"
+        android:text="Your mobile phone number will never be used, it is only for verification into the software."
+        style="@style/text_view_dark_gray_19" />
+
+</RelativeLayout>

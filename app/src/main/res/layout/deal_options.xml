@@ -1,0 +1,117 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context="com.gtsoft.meddyl.merchant.views.object.Deal_Create_Frag">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/rloMaxDollar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/small_space" >
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvUseImmediatelyLabel"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/big_space"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="Use Deal Immediately" />
+
+                <ImageView
+                    android:id="@+id/imvUseImmediatelyQuestion"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txvUseImmediatelyLabel"
+                    android:layout_toRightOf="@+id/txvUseImmediatelyLabel"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:src="@drawable/question_mark" />
+
+                <Switch
+                    android:id="@+id/swtUseImmediately"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/imvUseImmediatelyQuestion"
+                    android:layout_toRightOf="@+id/imvUseImmediatelyQuestion"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_marginRight="@dimen/small_space"
+                    android:thumb="@drawable/switch_selector"
+                    android:track="@drawable/switch_track"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:layout_centerVertical="true"
+                    android:theme="@style/switch_green" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/small_space" >
+
+                <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                    android:id="@+id/txvNewCustomersLabel"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginBottom="@dimen/big_space"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    style="@style/text_view_dark_gray_19"
+                    android:text="New Customers Only" />
+
+                <ImageView
+                    android:id="@+id/imvNewCustomersQuestion"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txvNewCustomersLabel"
+                    android:layout_toRightOf="@+id/txvNewCustomersLabel"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginLeft="@dimen/small_space"
+                    android:src="@drawable/question_mark" />
+
+                <Switch
+                    android:id="@+id/swtNewCustomers"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/imvNewCustomersQuestion"
+                    android:layout_toRightOf="@+id/imvNewCustomersQuestion"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_marginRight="@dimen/small_space"
+                    android:thumb="@drawable/switch_selector"
+                    android:track="@drawable/switch_track"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:layout_centerVertical="true"
+                    android:theme="@style/switch_green" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>
+
