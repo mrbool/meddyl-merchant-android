@@ -16,6 +16,7 @@ import com.gtsoft.meddyl.merchant.model.object.Contact;
 import com.gtsoft.meddyl.merchant.model.object.Credit_Card;
 import com.gtsoft.meddyl.merchant.model.object.Merchant_Contact;
 import com.gtsoft.meddyl.merchant.system.gtsoft.TextWatcherCreditCardExp;
+import com.gtsoft.meddyl.merchant.system.gtsoft.TextWatcherCreditCardNumber;
 import com.gtsoft.meddyl.merchant.system.gtsoft.TextWatcherPhone;
 import com.gtsoft.meddyl.merchant.system.gtsoft.Utils;
 import com.gtsoft.meddyl.merchant.views.base.View_Controller;
@@ -24,6 +25,7 @@ import org.droidparts.widget.ClearableEditText;
 
 public class Credit_Card_Add extends View_Controller
 {
+    private ClearableEditText edtCardNumber;
     ClearableEditText edtExpirationDate;
 
     private Credit_Card_Add_Async credit_card_add_async = null;
@@ -48,6 +50,9 @@ public class Credit_Card_Add extends View_Controller
 
         Set_Controller_Properties();
 
+        edtCardNumber = (ClearableEditText) findViewById(R.id.edtCardNumber);
+        edtCardNumber.addTextChangedListener(new TextWatcherCreditCardNumber(edtCardNumber));
+
         edtExpirationDate = (ClearableEditText) findViewById(R.id.edtExpirationDate);
         edtExpirationDate.addTextChangedListener(new TextWatcherCreditCardExp(edtExpirationDate));
 
@@ -66,13 +71,12 @@ public class Credit_Card_Add extends View_Controller
     public void Add_Card()
     {
         ClearableEditText edtCardHolderName = (ClearableEditText) findViewById(R.id.edtCardHolderName);
-        ClearableEditText edtCardNumber = (ClearableEditText) findViewById(R.id.edtCardNumber);
         ClearableEditText edtSecurityCode = (ClearableEditText) findViewById(R.id.edtSecurityCode);
         ClearableEditText edtZipCode = (ClearableEditText) findViewById(R.id.edtZipCode);
 
         String card_holder_name = edtCardHolderName.getText().toString().trim();
-        String card_number = edtCardNumber.getText().toString().trim();
-        String expiration_date = edtExpirationDate.getText().toString().trim().replaceAll("[^\\d]", "");;
+        String card_number = edtCardNumber.getText().toString().trim().replaceAll("[^\\d]", "");
+        String expiration_date = edtExpirationDate.getText().toString().trim().replaceAll("[^\\d]", "");
         String security_code = edtSecurityCode.getText().toString().trim();
         String zip_code = edtZipCode.getText().toString().trim();
 

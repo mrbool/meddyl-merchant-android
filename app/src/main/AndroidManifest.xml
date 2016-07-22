@@ -8,6 +8,42 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="false"/>
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <compatible-screens>
+        <screen android:screenSize="large" android:screenDensity="480" />
+        <screen android:screenSize="xlarge" android:screenDensity="480" />
+
+        <screen android:screenSize="small" android:screenDensity="ldpi" />
+        <screen android:screenSize="small" android:screenDensity="mdpi" />
+        <screen android:screenSize="small" android:screenDensity="hdpi" />
+        <screen android:screenSize="small" android:screenDensity="xhdpi"/>
+
+        <!--all normal size screens -->
+        <screen android:screenSize="normal" android:screenDensity="ldpi" />
+        <screen android:screenSize="normal" android:screenDensity="mdpi" />
+        <screen android:screenSize="normal" android:screenDensity="hdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xhdpi" />
+
+        <!-- all large size screens -->
+        <screen android:screenSize="large" android:screenDensity="ldpi" />
+        <screen android:screenSize="large" android:screenDensity="mdpi" />
+        <screen android:screenSize="large" android:screenDensity="hdpi" />
+        <screen android:screenSize="large" android:screenDensity="xhdpi" />
+
+        <!-- all xlarge size screens -->
+        <screen android:screenSize="xlarge" android:screenDensity="ldpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="mdpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="hdpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="xhdpi" />
+
+        <!-- Special case for Nexus 7 -->
+        <screen android:screenSize="large" android:screenDensity="213" />
+
+    </compatible-screens>
 
     <application
         android:name=".application.Meddyl"
@@ -125,6 +161,9 @@
             android:name=".views.object.Contact_Edit"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".views.object.Credit_Card_Add"
+                  android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".views.object.Credit_Cards"
             android:screenOrientation="portrait">
@@ -136,19 +175,15 @@
         <activity
             android:name=".system.gtsoft.CustomErrorActivity"
             android:label="@string/error_title"
-            android:process=":error_activity">
+            android:process=":error_activity"
+            android:screenOrientation="portrait">
 
             <!-- You can also use this instead of using CustomActivityOnCrash.setErrorActivityClass(CustomErrorActivity.class); -->
             <!-- <intent-filter> -->
             <!-- <action android:name="cat.ereza.customactivityoncrash.ERROR" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".views.object.Credit_Card_Add">
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+
     </application>
 
 </manifest>

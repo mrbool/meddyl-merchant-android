@@ -258,12 +258,11 @@
         <item name="android:singleLine">true</item>
         <item name="android:maxLines">1</item>
         <item name="android:background">@drawable/edit_text_format</item>
-        <item name="android:inputType">textPersonName</item>
+        <item name="android:inputType">textCapWords</item>
         <item name="android:imeOptions">actionDone</item>
         <item name="android:maxLength">100</item>
         <item name="android:textColorHint">@color/light_gray</item>
     </style>
-
 
     <!-- List View -->
     <style name="list_view">

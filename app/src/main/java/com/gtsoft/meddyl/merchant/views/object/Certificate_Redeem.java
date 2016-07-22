@@ -1,6 +1,8 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -25,6 +27,8 @@ import java.util.Date;
 
 public class Certificate_Redeem extends View_Controller
 {
+    private Button btnRedeem;
+
     private Redeem_Certificate_Async redeem_certificate_async;
 
     @Override
@@ -48,7 +52,7 @@ public class Certificate_Redeem extends View_Controller
         Set_Controller_Properties();
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
-        Button btnRedeem = (Button) findViewById(R.id.btnRedeem);
+        btnRedeem = (Button) findViewById(R.id.btnRedeem);
         btnRedeem.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -100,8 +104,8 @@ public class Certificate_Redeem extends View_Controller
         GTTextView txvFinePrint = (GTTextView) findViewById(R.id.txvFinePrint);
         txvFinePrint.setText(certificate_obj.getDealObj().getFinePrintExt());
 
-        Button btnRedeem = (Button) findViewById(R.id.btnRedeem);
-        if(certificate_obj.getCertificateStatusObj().getStatus() == "Active")
+        btnRedeem = (Button) findViewById(R.id.btnRedeem);
+        if(certificate_obj.getCertificateStatusObj().getStatus().equals("Active"))
             btnRedeem.setVisibility(View.VISIBLE);
         else
             btnRedeem.setVisibility(View.GONE);
@@ -153,7 +157,19 @@ public class Certificate_Redeem extends View_Controller
 
                 if (successful)
                 {
-                    Load_Data();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Certificate_Redeem.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("Successful");
+                    builder.setMessage(system_successful_obj.getMessage())
+                            .setNeutralButton("OK", new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    dialog.cancel();
+
+                                    finish();
+                                }
+                            }).create().show();
                 }
                 else
                 {

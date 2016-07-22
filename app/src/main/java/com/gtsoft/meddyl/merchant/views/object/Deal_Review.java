@@ -50,6 +50,7 @@ import java.util.Date;
 
 public class Deal_Review extends View_Controller implements OnMapReadyCallback
 {
+    private ProgressDialog dialog;
     Bitmap bitmap;
     private GoogleMap mpvMap;
 
@@ -64,6 +65,12 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deal_review);
+
+        dialog = new ProgressDialog(Deal_Review.this);
+        dialog.setMessage("Loading");
+        dialog.setCancelable(false);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.show();
 
         if(debug)
             Debug();
@@ -340,16 +347,11 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
 
         public Get_Merchant_Contact_Async()
         {
-            dialog = new ProgressDialog(Deal_Review.this);
         }
 
         @Override
         protected void onPreExecute()
         {
-            dialog.setMessage("Loading");
-            dialog.setCancelable(false);
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.show();
         }
 
         @Override
@@ -368,11 +370,6 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
         {
             try
             {
-                if (dialog.isShowing())
-                {
-                    dialog.dismiss();
-                }
-
                 if (successful)
                 {
                     verify_deal_async = new Verify_Deal_Async();
@@ -393,30 +390,18 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
         protected void onCancelled()
         {
             get_merchant_contact_async = null;
-
-            if (dialog.isShowing())
-            {
-                dialog.dismiss();
-            }
         }
     }
 
     private class Verify_Deal_Async extends AsyncTask<Void, Void, Boolean>
     {
-        private ProgressDialog dialog;
-
         public Verify_Deal_Async()
         {
-            dialog = new ProgressDialog(Deal_Review.this);
         }
 
         @Override
         protected void onPreExecute()
         {
-            dialog.setMessage("Validating");
-            dialog.setCancelable(false);
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.show();
         }
 
         @Override

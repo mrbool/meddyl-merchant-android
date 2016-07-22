@@ -224,42 +224,56 @@ public class Deal_Create_Frag extends Fragment_Controller
             {
                 successful = false;
                 error_title = "Dollar Amount";
-                error_message = "Maximum dollar amount is too low";
+                error_message = "Maximum dollar amount is too low\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getDollarValueMin().toString() + " and " + system_controller.getSystemSettingsObj().getDollarValueMax().toString();
+
                 ((ClearableEditText) rootView.findViewById(R.id.edtMaxDollar)).requestFocus();
             }
             else if(max_dollar_amount.compareTo(compare_max_dollar_value) == 1)
             {
                 successful = false;
                 error_title = "Dollar Amount";
-                error_message = "Maximum dollar amount is too high";
+                error_message = "Maximum dollar amount is too high\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getDollarValueMin().toString() + " and " + system_controller.getSystemSettingsObj().getDollarValueMax().toString();
+
                 ((ClearableEditText) rootView.findViewById(R.id.edtMaxDollar)).requestFocus();
             }
             else if(certificate_quantity < compare_min_certificate_quantity)
             {
                 successful = false;
                 error_title = "Certificates";
-                error_message = "Certificate quantity is too low";
+                error_message = "Certificate quantity is too low\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getCertificateQuantityMin() + " and " + system_controller.getSystemSettingsObj().getCertificateQuantityMax();
+
                 ((ClearableEditText) rootView.findViewById(R.id.edtCertQty)).requestFocus();
             }
             else if(certificate_quantity > compare_max_certificate_quantity)
             {
                 successful = false;
                 error_title = "Certificates";
-                error_message = "Certificate quantity is too high";
+                error_message = "Certificate quantity is too high\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getCertificateQuantityMin() + " and " + system_controller.getSystemSettingsObj().getCertificateQuantityMax();
+
                 ((ClearableEditText) rootView.findViewById(R.id.edtCertQty)).requestFocus();
             }
             else if(expiration_date_days < expiration_days_min)
             {
                 successful = false;
                 error_title = "Expiration Date";
-                error_message = "Expiration date must be after " + new DateTime().plus(expiration_days_min).toString(dtfOut);
+                error_message = "Expiration date must be after " + new DateTime().plusDays(expiration_days_min - 1).toString(dtfOut);
+
                 ((ClearableEditText) rootView.findViewById(R.id.edtCertQty)).requestFocus();
             }
             else if(expiration_date_days > expiration_days_max)
             {
                 successful = false;
                 error_title = "Expiration Date";
-                error_message = "Expiration date must be before " + new DateTime().plus(expiration_days_max).toString(dtfOut);
+                error_message = "Expiration date must be before " + new DateTime().plusDays(expiration_days_max - 1).toString(dtfOut);
+
                 ((ClearableEditText) rootView.findViewById(R.id.edtCertQty)).requestFocus();
             }
 

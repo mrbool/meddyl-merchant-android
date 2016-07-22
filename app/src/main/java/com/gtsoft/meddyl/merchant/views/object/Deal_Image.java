@@ -193,7 +193,7 @@ public class Deal_Image extends View_Controller
 
     private void Select_Image()
     {
-        final CharSequence[] items = {"Take Photo", "Choose from Library",
+        final CharSequence[] items = {"Take Photo", "Choose Photo",
                 "Cancel"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Deal_Image.this);
@@ -220,7 +220,7 @@ public class Deal_Image extends View_Controller
                             }).create().show();
 
                 }
-                else if (items[item].equals("Choose from Library"))
+                else if (items[item].equals("Choose Photo"))
                 {
                     Call_Photo_Library();
                 }

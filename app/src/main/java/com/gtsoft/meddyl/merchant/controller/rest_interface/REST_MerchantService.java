@@ -802,7 +802,7 @@ public class REST_MerchantService
 			if(json_response.getSuccessful())
 			{
 				json_successful_response = gson.fromJson(jsonObject.get("JSONResponse"), JSONSuccessfulResponse.class);
-				json_successful_response.setDataObj(gson.fromJson(((JsonObject)jsonObject.get("JSONResponse")).get("data_obj"), Fine_Print_Option[].class));
+				json_successful_response.setDataObj(gson.fromJson(((JsonObject)jsonObject.get("JSONResponse")).get("data_obj"), Deal.class));
 			}
 			else
 			{
@@ -916,7 +916,7 @@ public class REST_MerchantService
 
 		System_Error system_error_obj = new System_Error();
 		system_error_obj.setCode(500);
-		system_error_obj.setMessage("No Internet Connectin");
+		system_error_obj.setMessage("No Internet Connection");
 
 		json_error_response = new JSONErrorResponse();
 		json_error_response.setSuccessful(json_response.getSuccessful());

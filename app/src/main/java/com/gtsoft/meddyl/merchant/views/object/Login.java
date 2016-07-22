@@ -22,6 +22,8 @@ public class Login extends View_Controller
     String user_name;
     String password;
 
+    private ClearableEditText edtEmail;
+
     private Login_Async login_async = null;
 
     @Override
@@ -44,6 +46,8 @@ public class Login extends View_Controller
 
         Set_Controller_Properties();
 
+        edtEmail = (ClearableEditText) findViewById(R.id.edtEmail);
+
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener()
         {
@@ -64,14 +68,37 @@ public class Login extends View_Controller
                 intent.putExtra("system_controller", system_controller);
                 intent.putExtra("merchant_controller", merchant_controller);
                 intent.putExtra("deal_controller", deal_controller);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        deal_controller =  data.getExtras().getParcelable("deal_controller");
+        merchant_controller =  data.getExtras().getParcelable("merchant_controller");
+        system_controller =  data.getExtras().getParcelable("system_controller");
+
+        if(merchant_controller.getContactObj() != null &&  merchant_controller.getContactObj().getUserName() != null)
+        {
+            edtEmail.setText(merchant_controller.getContactObj().getUserName());
+        }
+    }
+
+    @Override
+    public void Back()
+    {
+        deal_controller.setContactObj(null);
+
+        finish();
+    }
+
     private void Login()
     {
-        user_name = ((ClearableEditText) findViewById(R.id.edtEmail)).getText().toString().trim();
+        user_name = edtEmail.getText().toString().trim();
         password = ((ClearableEditText) findViewById(R.id.edtPassword)).getText().toString().trim();
 
         successful = true;

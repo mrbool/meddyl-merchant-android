@@ -27,8 +27,7 @@
                     android:layout_height="match_parent"
                     android:paddingBottom="@dimen/activity_vertical_margin"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/activity_vertical_margin">
+                    android:paddingRight="@dimen/activity_horizontal_margin">
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvCertificateCode"
@@ -39,7 +38,6 @@
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvStatus"
                         android:layout_marginTop="@dimen/small_space"
-                        android:maxLines="1"
                         android:layout_below="@+id/txvCertificateCode"
                         style="@style/text_view_dark_gray_19" />
 
@@ -98,7 +96,7 @@
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvFinePrint"
-                        android:layout_marginTop="@dimen/small_space"
+                        android:layout_marginTop="@dimen/big_space"
                         android:layout_below="@+id/txvDeal"
                         android:layout_marginBottom="80dp"
                         style="@style/text_view_dark_gray_19" />

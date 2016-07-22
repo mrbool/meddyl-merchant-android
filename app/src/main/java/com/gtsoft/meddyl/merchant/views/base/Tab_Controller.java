@@ -109,15 +109,16 @@ public class Tab_Controller extends View_Controller
         builder.setCancelable(false);
         builder.setTitle("Cancel");
         builder.setMessage("Are you sure you want to cancel?")
-                .setNegativeButton("Yes", new DialogInterface.OnClickListener()
+                .setNegativeButton("No", null)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton)
                     {
+                        hideKeyboard();
                         mBottomBar.selectTabAtPosition(0, true);
                     }
-                })
-                .setPositiveButton("No", null).show();
+                }).show();
     }
 
     @Override

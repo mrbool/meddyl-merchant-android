@@ -76,7 +76,7 @@ public class Register_Validate extends View_Controller
         });
 
         GTTextView txvPhoneNote = (GTTextView) findViewById(R.id.txvPhoneNote);
-        txvPhoneNote.setText(Utils.Format_Phone(merchant_controller.getContactObj().getPhone()));
+        txvPhoneNote.setText("Enter the code sent to " + Utils.Format_Phone(merchant_controller.getContactObj().getPhone()));
 
         Button btnResend = (Button) findViewById(R.id.btnResend);
         btnResend.setOnClickListener(new View.OnClickListener()

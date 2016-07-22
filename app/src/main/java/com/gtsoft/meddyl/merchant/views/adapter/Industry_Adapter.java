@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.gtsoft.meddyl.merchant.R;
 import com.gtsoft.meddyl.merchant.model.object.Industry;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class Industry_Adapter extends ArrayAdapter<Industry>
         label.setText(values[position].getIndustry());
 
         if(label.getText().equals("Select Industry"))
-            label.setTextColor(Color.LTGRAY);
+            label.setTextColor(context.getResources().getColor(R.color.light_gray));
         else
             label.setTextColor(Color.BLACK);
 

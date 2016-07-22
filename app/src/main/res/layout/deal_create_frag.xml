@@ -190,6 +190,7 @@
                     android:background="@drawable/edit_text_border_format"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
+                    android:gravity="right"
                     />
 
             </android.support.percent.PercentRelativeLayout>

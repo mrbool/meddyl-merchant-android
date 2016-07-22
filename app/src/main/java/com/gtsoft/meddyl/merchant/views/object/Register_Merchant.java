@@ -72,9 +72,9 @@ public class Register_Merchant extends View_Controller
         spnIndustry = (Spinner) findViewById(R.id.spnIndustry);
         edtJobTitle = (ClearableEditText) findViewById(R.id.edtJobTitle);
 
-        Load_Industries();
+        edtCompanyPhone.addTextChangedListener(new TextWatcherPhone(edtCompanyPhone));
 
-        Load_Data();
+        Load_Industries();
 
         if(debug)
             Debug();

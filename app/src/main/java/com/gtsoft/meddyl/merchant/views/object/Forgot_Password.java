@@ -24,7 +24,6 @@ public class Forgot_Password extends View_Controller
 
     private Forgot_Password_Async forgot_password_async = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,6 +53,18 @@ public class Forgot_Password extends View_Controller
                 Forgot_Password();
             }
         });
+    }
+
+    @Override
+    public void Back()
+    {
+        Intent back_intent = new Intent();
+        back_intent.putExtra("deal_controller", deal_controller);
+        back_intent.putExtra("merchant_controller", merchant_controller);
+        back_intent.putExtra("system_controller", system_controller);
+        setResult(1, back_intent);
+
+        finish();
     }
 
     private void Forgot_Password()
@@ -140,6 +151,12 @@ public class Forgot_Password extends View_Controller
                                 public void onClick(DialogInterface dialog, int which)
                                 {
                                     dialog.cancel();
+
+                                    Intent back_intent = new Intent();
+                                    back_intent.putExtra("deal_controller", deal_controller);
+                                    back_intent.putExtra("merchant_controller", merchant_controller);
+                                    back_intent.putExtra("system_controller", system_controller);
+                                    setResult(1, back_intent);
 
                                     finish();
                                 }

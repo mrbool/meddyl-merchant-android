@@ -1,5 +1,7 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -152,11 +154,23 @@ public class Register_Merchant_Contact extends View_Controller
     @Override
     protected void Cancel()
     {
-        Intent intent = new Intent(getApplicationContext(), Main_View.class);
-        intent.putExtra("system_controller", system_controller);
-        intent.putExtra("merchant_controller", merchant_controller);
-        intent.putExtra("deal_controller", deal_controller);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Register_Merchant_Contact.this);
+        builder.setCancelable(false);
+        builder.setTitle("Cancel");
+        builder.setMessage("Are you sure you want to cancel?  Your info will be lost.")
+                .setNegativeButton("No", null)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                        Intent intent = new Intent(getApplicationContext(), Main_View.class);
+                        intent.putExtra("system_controller", system_controller);
+                        intent.putExtra("merchant_controller", merchant_controller);
+                        intent.putExtra("deal_controller", deal_controller);
+                        startActivity(intent);
+                    }
+                }).show();
     }
 
     public void Debug()

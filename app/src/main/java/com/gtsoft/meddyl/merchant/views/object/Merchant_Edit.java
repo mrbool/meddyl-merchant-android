@@ -163,7 +163,7 @@ public class Merchant_Edit extends View_Controller
             }
         });
 
-        edtDescription.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        edtDescription.setRawInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         edtDescription.setImeActionLabel(getResources().getString(R.string.done), EditorInfo.IME_ACTION_DONE);
         edtDescription.setImeOptions(EditorInfo.IME_ACTION_DONE);
         edtDescription.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -260,6 +260,7 @@ public class Merchant_Edit extends View_Controller
             @Override
             public void onClick(View v)
             {
+                image = "";
                 Show_Cropper(false);
             }
         });
@@ -343,6 +344,10 @@ public class Merchant_Edit extends View_Controller
 
             Show_Cropper(true);
         }
+        else
+        {
+            image = "";
+        }
     }
 
     public String getRealPathFromURI(Uri contentUri) {
@@ -382,7 +387,7 @@ public class Merchant_Edit extends View_Controller
 
     private void Select_Image()
     {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final CharSequence[] items = {"Take Photo", "Choose Photo", "Cancel"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Merchant_Edit.this);
         builder.setTitle("Add Photo!");
@@ -395,7 +400,7 @@ public class Merchant_Edit extends View_Controller
                 {
                     Call_Camera();
                 }
-                else if (items[item].equals("Choose from Library"))
+                else if (items[item].equals("Choose Photo"))
                 {
                     Call_Photo_Library();
                 }
@@ -407,7 +412,6 @@ public class Merchant_Edit extends View_Controller
         });
         builder.show();
     }
-
 
     public void Call_Photo_Library()
     {
@@ -598,6 +602,73 @@ public class Merchant_Edit extends View_Controller
 
             update_merchant_async = new Update_Merchant_Async();
             update_merchant_async.execute((Void) null);
+        }
+    }
+
+    public void Back()
+    {
+        edited = false;
+
+        if(!image.equals(""))
+        {
+            edited = true;
+        }
+        else if(!edtCompanyName.getText().toString().equals(merchant_controller.getMerchantContactObj().getMerchantObj().getCompanyName()))
+        {
+            edited = true;
+        }
+        else if(industry_id != merchant_controller.getMerchantContactObj().getMerchantObj().getIndustryObj().getIndustryId())
+        {
+            edited = true;
+        }
+        else if(!edtDescription.getText().toString().equals(merchant_controller.getMerchantContactObj().getMerchantObj().getDescription()))
+        {
+            edited = true;
+        }
+        else if(!edtAddress1.getText().toString().equals(merchant_controller.getMerchantContactObj().getMerchantObj().getAddress1()))
+        {
+            edited = true;
+        }
+        else if(!edtAddress2.getText().toString().equals(merchant_controller.getMerchantContactObj().getMerchantObj().getAddress2()))
+        {
+            edited = true;
+        }
+        else if(!edtZipCode.getText().toString().equals(merchant_controller.getMerchantContactObj().getMerchantObj().getZipCodeObj().getZipCode()))
+        {
+            edited = true;
+        }
+        else if(neighborhood_id != merchant_controller.getMerchantContactObj().getMerchantObj().getNeighborhoodObj().getNeighborhoodId())
+        {
+            edited = true;
+        }
+        else if(!edtCompanyPhone.getText().toString().replaceAll("[^\\d]", "").equals(merchant_controller.getMerchantContactObj().getMerchantObj().getPhone()))
+        {
+            edited = true;
+        }
+        else if(!edtWebsite.getText().toString().equals(merchant_controller.getMerchantContactObj().getMerchantObj().getWebsite()))
+        {
+            edited = true;
+        }
+
+        if(edited)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Merchant_Edit.this);
+            builder.setCancelable(false);
+            builder.setTitle("Cancel");
+            builder.setMessage("You have unsaved changes, are you sure you want to cancel?")
+                    .setNegativeButton("No", null)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton)
+                        {
+                            finish();
+                        }
+                    }).show();
+        }
+        else
+        {
+            finish();
         }
     }
 

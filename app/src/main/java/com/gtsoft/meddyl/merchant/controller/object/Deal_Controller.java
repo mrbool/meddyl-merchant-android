@@ -398,7 +398,11 @@ public class Deal_Controller extends Base_Controller implements Parcelable
 		system_error_obj = null;
 		system_successful_obj = null;
 
-		deal_obj = new Deal();
+		merchant_contact_obj = new Merchant_Contact();
+		merchant_contact_obj.setMerchantContactId(41);
+
+		deal_obj.setLoginLogObj(login_log_obj);
+		deal_obj.setMerchantContactObj(merchant_contact_obj);
 
 		REST_MerchantService i_rest = new REST_MerchantService(merchant_service);
 		i_rest.Get_Deal_Details(deal_obj);

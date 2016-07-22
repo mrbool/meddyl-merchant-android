@@ -45,7 +45,7 @@ public class Deal_Validate extends View_Controller
         merchant_controller = intent.getParcelableExtra("merchant_controller");
         deal_controller = intent.getParcelableExtra("deal_controller");
 
-        screen_title = "VALIDATE";
+        screen_title = "VALIDATE DEAL";
         left_button = "later";
         right_button = "";
 

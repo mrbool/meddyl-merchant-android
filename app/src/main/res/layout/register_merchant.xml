@@ -41,7 +41,7 @@
         android:textSize="40sp"
         android:prompt="@string/spinner"
         android:layout_below="@+id/edtWebsite"
-        style="@style/edit_text_email" />
+        style="@style/edit_text_name" />
 
     <org.droidparts.widget.ClearableEditText
         android:id="@+id/edtJobTitle"

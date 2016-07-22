@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
@@ -38,29 +39,31 @@ public class Register_Description extends View_Controller
 
         Set_Controller_Properties();
 
-//        InputFilter[] FilterArray = new InputFilter[1];
-//        FilterArray[0] = new InputFilter.LengthFilter(system_controller.getSystemSettingsObj().getCustomerDescriptionCharacters());
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(system_controller.getSystemSettingsObj().getMerchantDescriptionCharacters());
 
         edtDescription = (ClearableEditText) findViewById(R.id.edtDescription);
-//        edtDescription.setFilters(FilterArray);
-//        edtDescription.addTextChangedListener(new TextWatcher() {
-//
-//            public void afterTextChanged(Editable s) {
-//            }
-//
-//            public void beforeTextChanged(CharSequence s, int start,
-//                                          int count, int after) {
-//            }
-//
-//            public void onTextChanged(CharSequence s, int start,
-//                                      int before, int count)
-//            {
-//                Set_Character_Count();
-//            }
-//        });
+        edtDescription.setRawInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        edtDescription.setHint(system_controller.getSystemSettingsObj().getMerchantDescriptionDefault());
+        edtDescription.setFilters(FilterArray);
+        edtDescription.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count)
+            {
+                Set_Character_Count();
+            }
+        });
 
         txvCharacterCount = (GTTextView) findViewById(R.id.txvCharacterCount);
-//        txvCharacterCount.setText(String.valueOf(system_controller.getSystemSettingsObj().getCustomerDescriptionCharacters()) + " characters left");
+        txvCharacterCount.setText(String.valueOf(system_controller.getSystemSettingsObj().getMerchantDescriptionCharacters()) + " characters left");
 
         Load_Data();
 
@@ -141,7 +144,7 @@ public class Register_Description extends View_Controller
 
     public void Set_Character_Count()
     {
-        int characters_left = system_controller.getSystemSettingsObj().getCustomerDescriptionCharacters() - edtDescription.getText().length();
+        int characters_left = system_controller.getSystemSettingsObj().getMerchantDescriptionCharacters() - edtDescription.getText().length();
 
         txvCharacterCount.setText(String.valueOf(characters_left) + " characters left");
     }

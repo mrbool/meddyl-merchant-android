@@ -19,9 +19,8 @@
     <org.droidparts.widget.ClearableEditText
         android:id="@+id/edtFinePrint"
         android:textColorHint="@color/light_gray"
-        android:hint="ie. Not valid for Prime Rib, Valid only on Tuesdays for hamburgrs"
         android:layout_marginTop="10dp"
-        app:layout_heightPercent="30%"
+        app:layout_heightPercent="25%"
         android:layout_below="@+id/txvFinePrintLabel"
         style="@style/edit_text_multiline"/>
 

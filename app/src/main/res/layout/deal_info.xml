@@ -21,27 +21,29 @@
                 android:paddingTop="@dimen/activity_vertical_margin">
 
                     <ImageView
-                        android:id="@+id/imvDeal"
+                        android:id="@+id/imvDealImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#000000"
                         android:padding="1dp"
                         android:scaleType="fitXY"
                         android:layout_marginTop="@dimen/small_space"
-                        android:src="@drawable/your_logo_here" />
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvDealLabel"
                         android:layout_marginTop="@dimen/big_space"
-                        android:layout_below="@+id/imvDeal"
-                        style="@style/text_view_dark_gray_26"
-                        android:text="@string/deal_info_text_deal_label" />
+                        android:layout_below="@+id/imvDealImage"
+                        style="@style/text_view_dark_gray_22"
+                        android:text="@string/deal_info_text_deal_label"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvDeal"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvDealLabel"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <View
                         android:id="@+id/vw1"
@@ -49,20 +51,23 @@
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_height="1dip"
                         android:background="#BEBEBE"
-                        android:layout_below="@+id/txvDeal" />
+                        android:layout_below="@+id/txvDeal"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvExpirationLabel"
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_below="@+id/vw1"
-                        style="@style/text_view_dark_gray_26"
-                        android:text="@string/deal_info_text_expiration_label" />
+                        style="@style/text_view_dark_gray_22"
+                        android:text="@string/deal_info_text_expiration_label"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvExpiration"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvExpirationLabel"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <View
                         android:id="@+id/vw2"
@@ -70,27 +75,31 @@
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_height="1dip"
                         android:background="#BEBEBE"
-                        android:layout_below="@+id/txvExpiration" />
+                        android:layout_below="@+id/txvExpiration"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvStatusLabel"
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_below="@+id/vw2"
-                        style="@style/text_view_dark_gray_26"
-                        android:text="@string/deal_info_text_status_label" />
+                        style="@style/text_view_dark_gray_22"
+                        android:text="@string/deal_info_text_status_label"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvStatus"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvStatusLabel"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTButton
                         android:id="@+id/btnValidate"
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_below="@+id/txvStatus"
                         style="@style/button_green"
-                        android:text="@string/deal_info_button_validate"/>
+                        android:text="@string/deal_info_button_validate"
+                        android:visibility="invisible"/>
 
                     <View
                         android:id="@+id/vw3"
@@ -98,32 +107,44 @@
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_height="1dip"
                         android:background="#BEBEBE"
-                        android:layout_below="@+id/btnValidate" />
+                        android:layout_below="@+id/btnValidate"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvStatsLabel"
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_below="@+id/vw3"
-                        style="@style/text_view_dark_gray_26"
-                        android:text="@string/deal_info_text_stats_label" />
+                        style="@style/text_view_dark_gray_22"
+                        android:text="@string/deal_info_text_stats_label"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvCertificatesIssued"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvStatsLabel"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvCertificatesBought"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvCertificatesIssued"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvCertificatesRedeemed"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvCertificatesBought"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
+
+                    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+                        android:id="@+id/txvCertificatesRemaining"
+                        android:layout_marginTop="@dimen/small_space"
+                        android:layout_below="@+id/txvCertificatesRedeemed"
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <View
                         android:id="@+id/vw4"
@@ -131,35 +152,40 @@
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_height="1dip"
                         android:background="#BEBEBE"
-                        android:layout_below="@+id/txvCertificatesRedeemed" />
+                        android:layout_below="@+id/txvCertificatesRemaining"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvFinePrintLabel"
                         android:layout_marginTop="@dimen/big_space"
                         android:layout_below="@+id/vw4"
-                        style="@style/text_view_dark_gray_26"
-                        android:text="@string/deal_info_text_fine_print_label" />
+                        style="@style/text_view_dark_gray_22"
+                        android:text="@string/deal_info_text_fine_print_label"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvFinePrint"
-                        android:layout_marginTop="@dimen/small_space"
+                        android:layout_marginTop="@dimen/medium_space"
                         android:layout_marginBottom="@dimen/big_space"
                         android:layout_below="@+id/txvFinePrintLabel"
-                        style="@style/text_view_dark_gray_26" />
+                        style="@style/text_view_dark_gray_22"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTButton
                         android:id="@+id/btnModify"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/txvFinePrint"
                         style="@style/button_blue"
-                        android:text="@string/deal_info_button_modify"/>
+                        android:text="@string/deal_info_button_modify"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTButton
                         android:id="@+id/btnCancel"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_below="@+id/btnModify"
                         style="@style/button_red"
-                        android:text="@string/deal_info_button_cancel"/>
+                        android:text="@string/deal_info_button_cancel"
+                        android:visibility="invisible"/>
 
             </android.support.percent.PercentRelativeLayout>
 

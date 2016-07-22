@@ -36,7 +36,7 @@
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvCompanyName"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="@dimen/small_space"
                         android:layout_width="match_parent"
                         style="@style/text_view_dark_gray_26" />
 
@@ -49,7 +49,7 @@
                         android:scaleType="fitXY"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="@dimen/small_space"
                         android:background="#000000"
                         android:padding="1dp"
                         android:visibility="invisible"/>
@@ -113,13 +113,13 @@
                         android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_below="@+id/vw2"
-                        style="@style/text_view_dark_gray_19"
+                        style="@style/text_view_dark_gray_22"
                         android:text="FINE PRINT"
                         android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvFinePrint"
-                        android:layout_marginTop="@dimen/small_space"
+                        android:layout_marginTop="@dimen/medium_space"
                         android:layout_width="match_parent"
                         android:layout_below="@+id/txvFinePrintLabel"
                         style="@style/text_view_dark_gray_19" />

@@ -45,9 +45,10 @@ public class Deal_Fine_Print_More extends View_Controller
         Set_Controller_Properties();
 
         InputFilter[] FilterArray = new InputFilter[1];
-        FilterArray[0] = new InputFilter.LengthFilter(system_controller.getSystemSettingsObj().getCustomerDescriptionCharacters());
+        FilterArray[0] = new InputFilter.LengthFilter(system_controller.getSystemSettingsObj().getFinePrintMoreCharacters());
 
         edtFinePrint = (ClearableEditText) findViewById(R.id.edtFinePrint);
+        edtFinePrint.setHint(system_controller.getSystemSettingsObj().getFinePrintMoreDefault());
         edtFinePrint.setFilters(FilterArray);
         edtFinePrint.addTextChangedListener(new TextWatcher() {
 
@@ -65,7 +66,7 @@ public class Deal_Fine_Print_More extends View_Controller
             }
         });
 
-        edtFinePrint.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        edtFinePrint.setRawInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         edtFinePrint.setImeActionLabel(getResources().getString(R.string.done), EditorInfo.IME_ACTION_DONE);
         edtFinePrint.setImeOptions(EditorInfo.IME_ACTION_DONE);
         edtFinePrint.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -107,7 +108,7 @@ public class Deal_Fine_Print_More extends View_Controller
         });
 
         txvCharacterCount = (GTTextView) findViewById(R.id.txvCharacterCount);
-        txvCharacterCount.setText(String.valueOf(system_controller.getSystemSettingsObj().getCustomerDescriptionCharacters()) + " characters left");
+        txvCharacterCount.setText(String.valueOf(system_controller.getSystemSettingsObj().getFinePrintMoreCharacters()) + " characters left");
 
         Load_Data();
     }
@@ -126,7 +127,7 @@ public class Deal_Fine_Print_More extends View_Controller
 
     public void Set_Character_Count()
     {
-        int characters_left = system_controller.getSystemSettingsObj().getCustomerDescriptionCharacters() - edtFinePrint.getText().length();
+        int characters_left = system_controller.getSystemSettingsObj().getFinePrintMoreCharacters() - edtFinePrint.getText().length();
 
         txvCharacterCount.setText(String.valueOf(characters_left) + " characters left");
     }

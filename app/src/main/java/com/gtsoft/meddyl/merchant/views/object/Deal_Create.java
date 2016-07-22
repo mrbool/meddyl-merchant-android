@@ -59,6 +59,8 @@ public class Deal_Create extends View_Controller
         merchant_controller = intent.getParcelableExtra("merchant_controller");
         deal_controller = intent.getParcelableExtra("deal_controller");
 
+        deal_controller.setFinePrintOptionObjArrayAll(deal_controller.getDealObj().getFinePrintOptionObjArray());
+
         screen_title = "CREATE";
         left_button = "cancel";
         right_button = "next";
@@ -173,15 +175,15 @@ public class Deal_Create extends View_Controller
         builder.setCancelable(false);
         builder.setTitle("Cancel");
         builder.setMessage("Are you sure you want to cancel?")
-                .setNegativeButton("Yes", new DialogInterface.OnClickListener()
+                .setNegativeButton("No", null)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton)
                     {
                         finish();
                     }
-                })
-                .setPositiveButton("No", null).show();
+                }).show();
     }
 
     public void Next()
@@ -245,42 +247,56 @@ public class Deal_Create extends View_Controller
             {
                 successful = false;
                 error_title = "Dollar Amount";
-                error_message = "Maximum dollar amount is too low";
+                error_message = "Maximum dollar amount is too low\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getDollarValueMin().toString() + " and " + system_controller.getSystemSettingsObj().getDollarValueMax().toString();
+
                 ((ClearableEditText) findViewById(R.id.edtMaxDollar)).requestFocus();
             }
             else if(max_dollar_amount.compareTo(compare_max_dollar_value) == 1)
             {
                 successful = false;
                 error_title = "Dollar Amount";
-                error_message = "Maximum dollar amount is too high";
+                error_message = "Maximum dollar amount is too high\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getDollarValueMin().toString() + " and " + system_controller.getSystemSettingsObj().getDollarValueMax().toString();
+
                 ((ClearableEditText) findViewById(R.id.edtMaxDollar)).requestFocus();
             }
             else if(certificate_quantity < compare_min_certificate_quantity)
             {
                 successful = false;
                 error_title = "Certificates";
-                error_message = "Certificate quantity is too low";
+                error_message = "Certificate quantity is too low\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getCertificateQuantityMin() + " and " + system_controller.getSystemSettingsObj().getCertificateQuantityMax();
+
                 ((ClearableEditText) findViewById(R.id.edtCertQty)).requestFocus();
             }
             else if(certificate_quantity > compare_max_certificate_quantity)
             {
                 successful = false;
                 error_title = "Certificates";
-                error_message = "Certificate quantity is too high";
+                error_message = "Certificate quantity is too high\n" +
+                        "\n" +
+                        "Value must be between " + system_controller.getSystemSettingsObj().getCertificateQuantityMin() + " and " + system_controller.getSystemSettingsObj().getCertificateQuantityMax();
+
                 ((ClearableEditText) findViewById(R.id.edtCertQty)).requestFocus();
             }
             else if(expiration_date_days < expiration_days_min)
             {
                 successful = false;
                 error_title = "Expiration Date";
-                error_message = "Expiration date must be after " + new DateTime().plus(expiration_days_min).toString(dtfOut);
+                error_message = "Expiration date must be after " + new DateTime().plus(expiration_days_min - 1).toString(dtfOut);
+
                 ((ClearableEditText) findViewById(R.id.edtCertQty)).requestFocus();
             }
             else if(expiration_date_days > expiration_days_max)
             {
                 successful = false;
                 error_title = "Expiration Date";
-                error_message = "Expiration date must be before " + new DateTime().plus(expiration_days_max).toString(dtfOut);
+                error_message = "Expiration date must be before " + new DateTime().plus(expiration_days_max - 1).toString(dtfOut);
+
                 ((ClearableEditText) findViewById(R.id.edtCertQty)).requestFocus();
             }
 

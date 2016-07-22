@@ -25,6 +25,8 @@ import com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView;
 import com.gtsoft.meddyl.merchant.views.base.Tab_Controller;
 import com.gtsoft.meddyl.merchant.views.base.View_Controller;
 
+import org.droidparts.widget.ClearableEditText;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -32,6 +34,21 @@ import java.util.Date;
 
 public class Deal_Info extends View_Controller
 {
+    private ImageView imvDealImage;
+    private GTTextView txvDeal;
+    private GTTextView txvExpiration;
+    private GTTextView txvStatus;
+    private GTTextView txvCertificatesIssued;
+    private GTTextView txvCertificatesBought;
+    private GTTextView txvCertificatesRedeemed;
+    private GTTextView txvCertificatesRemaining;
+    private GTTextView txvFinePrint;
+
+    private Button btnValidate;
+    private Button btnModify;
+    private Button btnCancel;
+
+    private Get_Deal_Details_Async get_deal_details_async = null;
     private Send_Deal_Validation_Async send_deal_validation_async = null;
     private Cancel_Deal_Async cancel_deal_async = null;
 
@@ -57,22 +74,17 @@ public class Deal_Info extends View_Controller
 
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
-        Deal deal_obj = deal_controller.getDealObj();
+        imvDealImage = (ImageView) findViewById(R.id.imvDealImage);
+        txvDeal = (GTTextView) findViewById(R.id.txvDeal);
+        txvExpiration = (GTTextView) findViewById(R.id.txvExpiration);
+        txvStatus = (GTTextView) findViewById(R.id.txvStatus);
+        txvCertificatesIssued = (GTTextView) findViewById(R.id.txvCertificatesIssued);
+        txvCertificatesBought = (GTTextView) findViewById(R.id.txvCertificatesBought);
+        txvCertificatesRedeemed = (GTTextView) findViewById(R.id.txvCertificatesRedeemed);
+        txvCertificatesRemaining = (GTTextView) findViewById(R.id.txvCertificatesRemaining);
+        txvFinePrint = (GTTextView) findViewById(R.id.txvFinePrint);
 
-        Date entry_date = deal_obj.getEntryDateUtcStamp();
-        SimpleDateFormat date_format =  new SimpleDateFormat("M/d/yyyy");
-
-        Set_Logo(deal_obj.getImage());
-
-        ((GTTextView) findViewById(R.id.txvDeal)).setText(deal_obj.getDeal());
-        ((GTTextView) findViewById(R.id.txvExpiration)).setText(date_format.format(entry_date));
-        ((GTTextView) findViewById(R.id.txvStatus)).setText(deal_obj.getDealStatusObj().getStatus());
-        ((GTTextView) findViewById(R.id.txvCertificatesIssued)).setText(String.valueOf(deal_obj.getCertificateQuantity()) + " certificates issued");
-        ((GTTextView) findViewById(R.id.txvCertificatesBought)).setText(String.valueOf(deal_obj.getCertificatesSold()) + " certificates bought");
-        ((GTTextView) findViewById(R.id.txvCertificatesRedeemed)).setText(String.valueOf(deal_obj.getCertificatesRedeemed()) + " certificates redeemed");
-        ((GTTextView) findViewById(R.id.txvFinePrint)).setText(deal_obj.getFinePrintExt());
-
-        Button btnValidate = (Button) findViewById(R.id.btnValidate);
+        btnValidate = (Button) findViewById(R.id.btnValidate);
         btnValidate.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -83,7 +95,7 @@ public class Deal_Info extends View_Controller
             }
         });
 
-        Button btnModify = (Button) findViewById(R.id.btnModify);
+        btnModify = (Button) findViewById(R.id.btnModify);
         btnModify.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -99,7 +111,7 @@ public class Deal_Info extends View_Controller
             }
         });
 
-        Button btnCancel = (Button) findViewById(R.id.btnCancel);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -109,6 +121,61 @@ public class Deal_Info extends View_Controller
             }
         });
 
+        get_deal_details_async = new Get_Deal_Details_Async();
+        get_deal_details_async.execute((Void) null);
+    }
+
+    public void Load_Data()
+    {
+        Deal deal_obj = deal_controller.getDealObj();
+
+        Date expiration_date = deal_obj.getExpirationDate();
+        SimpleDateFormat date_format =  new SimpleDateFormat("M/d/yyyy");
+
+        /* set logo */
+        AQuery aq = new AQuery(getApplicationContext());
+        aq.id(imvDealImage).image(deal_obj.getImage());
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        imvDealImage.getLayoutParams().width = size.x;
+        imvDealImage.getLayoutParams().height = (int)Math.floor(size.x *.66);
+        imvDealImage.requestLayout();
+
+        /* set labels */
+        txvDeal.setText(deal_obj.getDeal());
+        txvExpiration.setText(date_format.format(expiration_date));
+        txvStatus.setText(deal_obj.getDealStatusObj().getStatus());
+        txvCertificatesIssued.setText(String.valueOf(deal_obj.getCertificateQuantity()) + " certificates issued");
+        txvCertificatesBought.setText(String.valueOf(deal_obj.getCertificatesSold()) + " certificates bought");
+        txvCertificatesRedeemed.setText(String.valueOf(deal_obj.getCertificatesRedeemed()) + " certificates redeemed");
+        txvCertificatesRemaining.setText(String.valueOf(deal_obj.getCertificatesRemaining()) + " certificates remaining");
+        txvFinePrint.setText(deal_obj.getFinePrintExt());
+
+        imvDealImage.setVisibility(View.VISIBLE);
+        ((GTTextView)findViewById(R.id.txvDealLabel)).setVisibility(View.VISIBLE);
+        txvDeal.setVisibility(View.VISIBLE);
+        ((View)findViewById(R.id.vw1)).setVisibility(View.VISIBLE);
+        ((GTTextView)findViewById(R.id.txvExpirationLabel)).setVisibility(View.VISIBLE);
+        txvExpiration.setVisibility(View.VISIBLE);
+        ((View)findViewById(R.id.vw2)).setVisibility(View.VISIBLE);
+        ((GTTextView)findViewById(R.id.txvStatusLabel)).setVisibility(View.VISIBLE);
+        txvStatus.setVisibility(View.VISIBLE);
+        ((View)findViewById(R.id.vw3)).setVisibility(View.VISIBLE);
+        ((GTTextView)findViewById(R.id.txvStatsLabel)).setVisibility(View.VISIBLE);
+        txvCertificatesIssued.setVisibility(View.VISIBLE);
+        txvCertificatesBought.setVisibility(View.VISIBLE);
+        txvCertificatesRedeemed.setVisibility(View.VISIBLE);
+        txvCertificatesRemaining.setVisibility(View.VISIBLE);
+        ((View)findViewById(R.id.vw4)).setVisibility(View.VISIBLE);
+        ((GTTextView)findViewById(R.id.txvFinePrintLabel)).setVisibility(View.VISIBLE);
+        txvFinePrint.setVisibility(View.VISIBLE);
+        btnValidate.setVisibility(View.VISIBLE);
+        btnModify.setVisibility(View.VISIBLE);
+        btnCancel.setVisibility(View.VISIBLE);
+
         if(deal_obj.getDealStatusObj().getStatusId() != 5)
             btnValidate.setVisibility(View.GONE);
 
@@ -116,22 +183,8 @@ public class Deal_Info extends View_Controller
             btnModify.setVisibility(View.GONE);
 
         if(deal_obj.getDealStatusObj().getStatusId() == 2 || deal_obj.getDealStatusObj().getStatusId() == 3)
-            btnModify.setVisibility(View.GONE);
-    }
+            btnCancel.setVisibility(View.GONE);
 
-    public void Set_Logo(String image)
-    {
-        ImageView imgDealImage = (ImageView) findViewById(R.id.imvDeal);
-        AQuery aq = new AQuery(getApplicationContext());
-        aq.id(imgDealImage).image(image);
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-        imgDealImage.getLayoutParams().width = size.x;
-        imgDealImage.getLayoutParams().height = (int)Math.floor(size.x *.66);
-        imgDealImage.requestLayout();
     }
 
     public void Cancel_Deal()
@@ -140,8 +193,7 @@ public class Deal_Info extends View_Controller
         builder.setCancelable(false);
         builder.setTitle("Cancel Deal");
         builder.setMessage("Are you sure you want to cancel this deal?")
-                .setPositiveButton("No", null)
-                .setNegativeButton("Yes", new DialogInterface.OnClickListener()
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton)
@@ -149,12 +201,80 @@ public class Deal_Info extends View_Controller
                         cancel_deal_async = new Cancel_Deal_Async();
                         cancel_deal_async.execute((Void) null);
                     }
-                }).show();
+                })
+                .setNegativeButton("No", null).show();
     }
 
     public void Debug()
     {
 
+    }
+
+    private class Get_Deal_Details_Async extends AsyncTask<Void, Void, Boolean>
+    {
+        private ProgressDialog dialog;
+
+        public Get_Deal_Details_Async()
+        {
+            dialog = new ProgressDialog(Deal_Info.this);
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            dialog.setMessage("Loading");
+            dialog.setCancelable(false);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... login_log_data)
+        {
+            deal_controller.setMerchantContactObj(merchant_controller.getMerchantContactObj());
+            deal_controller.Get_Deal_Details();
+            successful = deal_controller.getSuccessful();
+            system_error_obj = deal_controller.getSystemErrorObj();
+            system_successful_obj = deal_controller.getSystemSuccessfulObj();
+
+            return successful;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success)
+        {
+            try
+            {
+                if (dialog.isShowing())
+                {
+                    dialog.dismiss();
+                }
+
+                if (successful)
+                {
+                    Load_Data();
+                }
+                else
+                {
+                    Show_Alert_Dialog("Error", system_error_obj.getMessage());
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.i("error in async", ex.getMessage().toString());
+            }
+        }
+
+        @Override
+        protected void onCancelled()
+        {
+            send_deal_validation_async = null;
+
+            if (dialog.isShowing())
+            {
+                dialog.dismiss();
+            }
+        }
     }
 
     private class Send_Deal_Validation_Async extends AsyncTask<Void, Void, Boolean>

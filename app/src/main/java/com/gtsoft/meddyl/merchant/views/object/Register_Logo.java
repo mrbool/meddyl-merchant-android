@@ -226,7 +226,7 @@ public class Register_Logo extends View_Controller
 
     private void Select_Image()
     {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final CharSequence[] items = {"Take Photo", "Choose Photo", "Cancel"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Register_Logo.this);
         builder.setTitle("Add Photo!");
@@ -239,7 +239,7 @@ public class Register_Logo extends View_Controller
                 {
                     Call_Camera();
                 }
-                else if (items[item].equals("Choose from Library"))
+                else if (items[item].equals("Choose Photo"))
                 {
                     Call_Photo_Library();
                 }

@@ -27,7 +27,8 @@ import com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView;
 
 public class View_Controller extends AppCompatActivity
 {
-    protected static boolean debug = true;
+    protected static boolean debug = false;
+    protected boolean edited;
     protected boolean successful;
     protected System_Successful system_successful_obj;
     protected System_Error system_error_obj;

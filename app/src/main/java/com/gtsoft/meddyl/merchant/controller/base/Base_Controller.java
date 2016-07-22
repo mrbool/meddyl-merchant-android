@@ -14,7 +14,7 @@ public class Base_Controller
 {
     protected boolean successful;
     protected String message;
-    protected String merchant_service = "http://api.meddyl.com/1.10/services/MerchantService.svc/";
+    protected String merchant_service = "https://api.meddyl.com/1.10/services/MerchantService.svc/";
     protected Application_Type application_type_obj;
     protected Login_Log login_log_obj;
 

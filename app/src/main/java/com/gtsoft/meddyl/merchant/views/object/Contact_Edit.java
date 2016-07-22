@@ -98,7 +98,7 @@ public class Contact_Edit extends View_Controller
         edtEmail.setText(contact_obj.getEmail());
         edtJobTitle.setText(merchant_contact_obj.getTitle());
 
-        edtFirstName.setVisibility(View.VISIBLE);
+            edtFirstName.setVisibility(View.VISIBLE);
         txvPhone.setVisibility(View.VISIBLE);
         edtLastName.setVisibility(View.VISIBLE);
         edtEmail.setVisibility(View.VISIBLE);
@@ -170,6 +170,49 @@ public class Contact_Edit extends View_Controller
 
             update_merchant_contact_async = new Update_Merchant_Contact_Async();
             update_merchant_contact_async.execute((Void) null);
+        }
+    }
+
+    public void Back()
+    {
+        edited = false;
+
+        if(!edtFirstName.getText().toString().equals(merchant_controller.getMerchantContactObj().getContactObj().getFirstName()))
+        {
+            edited = true;
+        }
+        else if(!edtLastName.getText().toString().equals(merchant_controller.getMerchantContactObj().getContactObj().getLastName()))
+        {
+            edited = true;
+        }
+        else if(!edtEmail.getText().toString().equals(merchant_controller.getMerchantContactObj().getContactObj().getEmail()))
+        {
+            edited = true;
+        }
+        else if(!edtJobTitle.getText().toString().equals(merchant_controller.getMerchantContactObj().getTitle()))
+        {
+            edited = true;
+        }
+
+        if(edited)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Contact_Edit.this);
+            builder.setCancelable(false);
+            builder.setTitle("Cancel");
+            builder.setMessage("You have unsaved changes, are you sure you want to cancel?")
+                    .setNegativeButton("No", null)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton)
+                        {
+                            finish();
+                        }
+                    }).show();
+        }
+        else
+        {
+            finish();
         }
     }
 
