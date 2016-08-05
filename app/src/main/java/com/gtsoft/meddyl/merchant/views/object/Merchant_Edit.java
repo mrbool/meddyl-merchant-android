@@ -1,20 +1,24 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -208,6 +212,24 @@ public class Merchant_Edit extends View_Controller
         load_industries_async.execute((Void) null);
     }
 
+    /* Callback received when a permissions request has been completed. */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == 123)
+        {
+            if(grantResults[0] == 0)
+            {
+                Select_Image();
+                request_times=0;
+            }
+        }
+        else
+        {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
     private void Get_Neighborhoods()
     {
         zip_code = edtZipCode.getText().toString().trim();
@@ -240,7 +262,15 @@ public class Merchant_Edit extends View_Controller
             @Override
             public void onClick(View v)
             {
-                Select_Image();
+                int has_permission = 0;
+
+                if (Build.VERSION.SDK_INT >= 23)
+                {
+                    has_permission = Check_Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                }
+
+                if(has_permission == 0)
+                    Select_Image();
             }
         });
 
@@ -311,12 +341,18 @@ public class Merchant_Edit extends View_Controller
 
         if (resultCode == Activity.RESULT_OK)
         {
-
             if(requestCode == ACTION_TAKE_PHOTO)
             {
                 Display display = getWindowManager().getDefaultDisplay();
                 Point size = new Point();
                 display.getSize(size);
+
+                /* you need this code or it will crash */
+                File file = new File(image);
+                if(file.exists())
+                {
+                    Bitmap holdBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                }
 
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 Bitmap bitmap = BitmapFactory.decodeFile(image, bmOptions);

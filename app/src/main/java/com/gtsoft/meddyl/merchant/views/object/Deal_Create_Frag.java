@@ -1,5 +1,8 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -159,6 +163,32 @@ public class Deal_Create_Frag extends Fragment_Controller
 
         //Load_Data();
     }
+
+    @Override
+    public void onDestroyView()
+    {
+        Hide_Keyboard();
+
+        super.onDestroyView();
+    }
+
+//    protected void Cancel()
+//    {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(Tab_Controller.this);
+//        builder.setCancelable(false);
+//        builder.setTitle("Cancel");
+//        builder.setMessage("Are you sure you want to cancel?")
+//                .setNegativeButton("No", null)
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int whichButton)
+//                    {
+//                        //hideKeyboard();
+//                        mBottomBar.selectTabAtPosition(0, true);
+//                    }
+//                }).show();
+//    }
 
     public void Next()
     {

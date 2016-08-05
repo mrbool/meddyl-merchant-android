@@ -1,5 +1,6 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,8 +10,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -85,7 +88,15 @@ public class Deal_Image extends View_Controller
             @Override
             public void onClick(View v)
             {
-                Select_Image();
+                int has_permission = 0;
+
+                if (Build.VERSION.SDK_INT >= 23)
+                {
+                    has_permission = Check_Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                }
+
+                if(has_permission == 0)
+                    Select_Image();
             }
         });
 
@@ -105,6 +116,24 @@ public class Deal_Image extends View_Controller
             {
                 Handle_Selected_Photo(data);
             }
+        }
+    }
+
+    /* Callback received when a permissions request has been completed. */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == 123)
+        {
+            if(grantResults[0] == 0)
+            {
+                Select_Image();
+                request_times=0;
+            }
+        }
+        else
+        {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -325,6 +354,13 @@ public class Deal_Image extends View_Controller
     {
         int targetW = image_width;
         int targetH = image_height;
+
+        /* you need this code or it will crash */
+        File file = new File(image);
+        if(file.exists())
+        {
+            Bitmap holdBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        }
 
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();

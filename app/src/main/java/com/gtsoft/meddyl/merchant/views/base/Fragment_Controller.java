@@ -1,11 +1,13 @@
 package com.gtsoft.meddyl.merchant.views.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.gtsoft.meddyl.merchant.controller.object.Deal_Controller;
 import com.gtsoft.meddyl.merchant.controller.object.Merchant_Controller;
@@ -36,5 +38,9 @@ public class Fragment_Controller extends Fragment
         return null;
     }
 
-
+    protected void Hide_Keyboard()
+    {
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    }
 }

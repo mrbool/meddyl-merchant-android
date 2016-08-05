@@ -60,6 +60,7 @@ public class Tab_Controller extends View_Controller
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.useFixedMode();
+        mBottomBar.noTabletGoodness();
         mBottomBar.setDefaultTabPosition(selected_tab);
         mBottomBar.setActiveTabColor(Color.BLUE);
         mBottomBar.setTextAppearance(R.style.bottom_bar_text);
@@ -115,7 +116,7 @@ public class Tab_Controller extends View_Controller
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton)
                     {
-                        hideKeyboard();
+                        //hideKeyboard();
                         mBottomBar.selectTabAtPosition(0, true);
                     }
                 }).show();

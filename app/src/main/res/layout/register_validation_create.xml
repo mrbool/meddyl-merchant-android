@@ -60,7 +60,7 @@
         android:layout_below="@+id/edtPhone"
         android:paddingTop="2dp"
         android:layout_marginTop="@dimen/small_space"
-        android:text="Your mobile phone number will never be used, it is only for verification into the software."
+        android:text="Your mobile phone number will never be used, it is only for authentication"
         style="@style/text_view_dark_gray_19" />
 
 </RelativeLayout>

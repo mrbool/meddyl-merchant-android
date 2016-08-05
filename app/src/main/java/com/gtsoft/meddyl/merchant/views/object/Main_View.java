@@ -1,22 +1,34 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import android.Manifest;
+
+//import com.gtsoft.meddyl.merchant.Manifest;
 import com.gtsoft.meddyl.merchant.R;
 import com.gtsoft.meddyl.merchant.model.object.Contact;
 import com.gtsoft.meddyl.merchant.views.base.Tab_Controller;
 import com.gtsoft.meddyl.merchant.views.base.View_Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Main_View extends View_Controller
 {
+    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+
     private String action="";
     private String user_name;
     private String password;
@@ -90,11 +102,20 @@ public class Main_View extends View_Controller
     {
         public Load_System_Settings_Async()
         {
+            if(!action.equals("auto_login"))
+                dialog = new ProgressDialog(Main_View.this);
         }
 
         @Override
         protected void onPreExecute()
         {
+            if(!action.equals("auto_login"))
+            {
+                dialog.setMessage("Loading");
+                dialog.setCancelable(false);
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog.show();
+            }
         }
 
         @Override
@@ -112,6 +133,14 @@ public class Main_View extends View_Controller
         {
             try
             {
+                if(!action.equals("auto_login"))
+                {
+                    if (dialog.isShowing())
+                    {
+                        dialog.dismiss();
+                    }
+                }
+
                 if (successful)
                 {
                     if(action == "login")
@@ -151,6 +180,11 @@ public class Main_View extends View_Controller
         protected void onCancelled()
         {
             load_system_settings_async = null;
+
+            if (dialog.isShowing())
+            {
+                dialog.dismiss();
+            }
         }
     }
 

@@ -34,11 +34,16 @@
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:orientation="vertical">
 
+                <RelativeLayout
+                    android:id="@+id/rloCompanyInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
-                        android:id="@+id/txvCompanyName"
-                        android:layout_marginTop="@dimen/small_space"
-                        android:layout_width="match_parent"
-                        style="@style/text_view_dark_gray_26" />
+                            android:id="@+id/txvCompanyName"
+                            android:layout_marginTop="@dimen/small_space"
+                            android:layout_width="match_parent"
+                            style="@style/text_view_dark_gray_26" />
 
                     <ImageView
                         android:id="@+id/imvLogo"
@@ -73,13 +78,15 @@
                         android:layout_below="@+id/txvNeighborhood"
                         android:visibility="invisible"/>
 
+                </RelativeLayout>
+
                     <View
                         android:id="@+id/vw1"
                         android:layout_width="fill_parent"
                         android:layout_marginTop="@dimen/small_space"
                         android:layout_height="1dip"
                         android:background="#BEBEBE"
-                        android:layout_below="@+id/imvStars"
+                        android:layout_below="@+id/rloCompanyInfo"
                         android:visibility="invisible" />
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
@@ -209,7 +216,8 @@
                         android:layout_below="@+id/txvAddress2"
                         android:textColor="@color/blue"
                         style="@style/text_view_dark_gray_19"
-                        android:text="@string/merchant_info_text_directions"/>
+                        android:text="@string/merchant_info_text_directions"
+                        android:visibility="invisible"/>
 
                     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
                         android:id="@+id/txvPhone"
@@ -228,7 +236,8 @@
                         android:layout_below="@+id/txvPhone"
                         android:textColor="@color/blue"
                         style="@style/text_view_dark_gray_19"
-                        android:text="@string/merchant_info_text_website" />
+                        android:text="@string/merchant_info_text_website"
+                        android:visibility="invisible" />
 
                     <View
                         android:id="@+id/vwBottom"

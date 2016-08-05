@@ -1,5 +1,6 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -11,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -88,6 +91,27 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
 
         get_merchant_contact_async = new Get_Merchant_Contact_Async();
         get_merchant_contact_async.execute((Void) null);
+    }
+
+    /* Callback received when a permissions request has been completed. */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == 123)
+        {
+            if(grantResults[0] == 0)
+            {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phone));
+                startActivity(callIntent);
+
+                request_times=0;
+            }
+        }
+        else
+        {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     public void Debug()
@@ -224,9 +248,19 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
             @Override
             public void onClick(View view)
             {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + phone));
-                startActivity(callIntent);
+                int has_permission = 0;
+
+                if (Build.VERSION.SDK_INT >= 23)
+                {
+                    has_permission = Check_Permission(Manifest.permission.CALL_PHONE);
+                }
+
+                if(has_permission == 0)
+                {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + phone));
+                    startActivity(callIntent);
+                }
             }
         });
 
@@ -287,6 +321,9 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
         GTTextView txvFinePrint = (GTTextView) findViewById(R.id.txvFinePrint);
         txvFinePrint.setText(deal_obj.getFinePrintExt());
 
+        ((GTTextView) findViewById(R.id.txvDirections)).setVisibility(View.VISIBLE);
+        ((GTTextView) findViewById(R.id.txvWebSite)).setVisibility(View.VISIBLE);
+
         Button btnCreateDeal = (Button) findViewById(R.id.btnCreateDeal);
         btnCreateDeal.setOnClickListener(new View.OnClickListener()
         {
@@ -343,8 +380,6 @@ public class Deal_Review extends View_Controller implements OnMapReadyCallback
 
     private class Get_Merchant_Contact_Async extends AsyncTask<Void, Void, Boolean>
     {
-        private ProgressDialog dialog;
-
         public Get_Merchant_Contact_Async()
         {
         }

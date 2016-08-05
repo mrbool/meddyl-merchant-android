@@ -1,5 +1,6 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,8 +12,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
 import android.view.Display;
@@ -105,7 +108,15 @@ public class Register_Logo extends View_Controller
             @Override
             public void onClick(View v)
             {
-                Select_Image();
+                int has_permission = 0;
+
+                if (Build.VERSION.SDK_INT >= 23)
+                {
+                    has_permission = Check_Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                }
+
+                if(has_permission == 0)
+                    Select_Image();
             }
         });
 
@@ -154,6 +165,24 @@ public class Register_Logo extends View_Controller
         }
     }
 
+    /* Callback received when a permissions request has been completed. */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == 123)
+        {
+            if(grantResults[0] == 0)
+            {
+                Select_Image();
+                request_times=0;
+            }
+        }
+        else
+        {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
     private void Load_Data()
     {
         if (merchant_controller.getMerchantObj().getImage() != null)
@@ -192,14 +221,24 @@ public class Register_Logo extends View_Controller
 
     protected void Next()
     {
-        File company_file = new File(getCacheDir(), image);
-
         successful = true;
-        if(!company_file.exists())
+
+        if(image == null)
         {
             successful = false;
             error_title = "Need Logo";
             error_message = "Please take a picture or choose an image of your company logo";
+        }
+        else
+        {
+            File company_file = new File(getCacheDir(), image);
+
+            if (!company_file.exists())
+            {
+                successful = false;
+                error_title = "Need Logo";
+                error_message = "Please take a picture or choose an image of your company logo";
+            }
         }
 
         if(!successful)
@@ -338,7 +377,8 @@ public class Register_Logo extends View_Controller
         if(company_file.exists())
         {
             Bitmap myBitmap = BitmapFactory.decodeFile(company_file.getAbsolutePath());
-            imvLogo.setImageBitmap(Utils.getRoundedCornerBitmap(myBitmap, 50));
+            imvLogo.setImageBitmap(myBitmap);
+//            imvLogo.setImageBitmap(Utils.getRoundedCornerBitmap(myBitmap, 50));
         }
     }
 
@@ -356,6 +396,13 @@ public class Register_Logo extends View_Controller
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
+
+        /* you need this code or it will crash */
+        File file = new File(image);
+        if(file.exists())
+        {
+            Bitmap holdBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        }
 
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         Bitmap bitmap = BitmapFactory.decodeFile(image, bmOptions);

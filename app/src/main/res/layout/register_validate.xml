@@ -15,7 +15,7 @@
         app:layout_marginTopPercent="20%"
         android:layout_centerHorizontal="true"
         android:gravity="right"
-        android:textSize="50sp"
+        android:textSize="50dp"
         style="@style/edit_text_number"/>
 
     <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
@@ -23,8 +23,8 @@
         android:paddingTop="2dp"
         android:layout_marginTop="@dimen/small_space"
         android:maxLines="1"
-        android:text="Enter the code sent to (858) 699-0966"
         android:ellipsize="end"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/edtCode"
         style="@style/text_view_dark_gray_19" />
 

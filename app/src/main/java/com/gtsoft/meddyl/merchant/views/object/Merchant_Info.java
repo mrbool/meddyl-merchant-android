@@ -1,5 +1,6 @@
 package com.gtsoft.meddyl.merchant.views.object;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -10,7 +11,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
@@ -114,9 +117,19 @@ public class Merchant_Info extends View_Controller implements OnMapReadyCallback
             @Override
             public void onClick(View view)
             {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + phone));
-                startActivity(callIntent);
+                int has_permission = 0;
+
+                if (Build.VERSION.SDK_INT >= 23)
+                {
+                    has_permission = Check_Permission(Manifest.permission.CALL_PHONE);
+                }
+
+                if(has_permission == 0)
+                {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + phone));
+                    startActivity(callIntent);
+                }
             }
         });
 
@@ -156,6 +169,27 @@ public class Merchant_Info extends View_Controller implements OnMapReadyCallback
         }
     }
 
+    /* Callback received when a permissions request has been completed. */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == 123)
+        {
+            if(grantResults[0] == 0)
+            {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phone));
+                startActivity(callIntent);
+
+                request_times=0;
+            }
+        }
+        else
+        {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap map)
     {
@@ -191,7 +225,8 @@ public class Merchant_Info extends View_Controller implements OnMapReadyCallback
             if(company_file.exists())
             {
                 Bitmap myBitmap = BitmapFactory.decodeFile(company_file.getAbsolutePath());
-                imvLogo.setImageBitmap(Utils.getRoundedCornerBitmap(myBitmap, 50));
+                imvLogo.setImageBitmap(myBitmap);
+                //imvLogo.setImageBitmap(Utils.getRoundedCornerBitmap(myBitmap, 50));
             }
         }
         else

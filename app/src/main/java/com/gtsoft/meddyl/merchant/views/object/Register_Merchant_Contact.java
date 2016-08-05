@@ -82,6 +82,7 @@ public class Register_Merchant_Contact extends View_Controller
         ((GTTextView) findViewById(R.id.txvName)).setText(merchant_controller.getContactObj().getFirstName() + " " +  merchant_controller.getContactObj().getLastName());
         ((GTTextView) findViewById(R.id.txvPhone)).setText(Utils.Format_Phone(merchant_controller.getContactObj().getPhone()));
         edtEmail.setText(merchant_controller.getContactObj().getEmail());
+        ((ClearableEditText) findViewById(R.id.edtPassword)).requestFocus();
     }
 
     private void Save_Data()
