@@ -70,25 +70,17 @@ public class Credit_Card_Add extends View_Controller
 
     public void Add_Card()
     {
-        ClearableEditText edtCardHolderName = (ClearableEditText) findViewById(R.id.edtCardHolderName);
         ClearableEditText edtSecurityCode = (ClearableEditText) findViewById(R.id.edtSecurityCode);
         ClearableEditText edtZipCode = (ClearableEditText) findViewById(R.id.edtZipCode);
 
-        String card_holder_name = edtCardHolderName.getText().toString().trim();
+        String card_holder_name = "";
         String card_number = edtCardNumber.getText().toString().trim().replaceAll("[^\\d]", "");
         String expiration_date = edtExpirationDate.getText().toString().trim().replaceAll("[^\\d]", "");
         String security_code = edtSecurityCode.getText().toString().trim();
         String zip_code = edtZipCode.getText().toString().trim();
 
         successful = true;
-        if(card_holder_name.length() == 0)
-        {
-            successful = false;
-            error_title = "Name";
-            error_message = "Card holder name cannot be blank";
-            edtCardHolderName.requestFocus();
-        }
-        else if(card_number.length() == 0)
+        if(card_number.length() == 0)
         {
             successful = false;
             error_title = "Card Number";
@@ -129,6 +121,7 @@ public class Credit_Card_Add extends View_Controller
             credit_card_obj.setCardNumber(card_number);
             credit_card_obj.setExpirationDate(expiration_date);
             credit_card_obj.setBillingZipCode(zip_code);
+            credit_card_obj.setSecurityCode(security_code);
 
             merchant_controller.setCreditCardObj(credit_card_obj);
 
@@ -139,7 +132,6 @@ public class Credit_Card_Add extends View_Controller
 
     public void Debug()
     {
-        ((ClearableEditText) findViewById(R.id.edtCardHolderName)).setText("George Triarhos");
         ((ClearableEditText) findViewById(R.id.edtCardNumber)).setText("4147202229308208");
         ((ClearableEditText) findViewById(R.id.edtExpirationDate)).setText("09/18");
         ((ClearableEditText) findViewById(R.id.edtSecurityCode)).setText("264");
