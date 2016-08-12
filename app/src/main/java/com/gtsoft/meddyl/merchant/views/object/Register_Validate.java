@@ -171,11 +171,22 @@ public class Register_Validate extends View_Controller
                                 {
                                     dialog.cancel();
 
-                                    Intent intent = new Intent(getApplicationContext(), Register_Merchant_Contact.class);
-                                    intent.putExtra("system_controller", system_controller);
-                                    intent.putExtra("merchant_controller", merchant_controller);
-                                    intent.putExtra("deal_controller", deal_controller);
-                                    startActivity(intent);
+                                    if(merchant_controller.getContactObj().getContactId() == 0)
+                                    {
+                                        Intent intent = new Intent(getApplicationContext(), Register_Merchant_Contact.class);
+                                        intent.putExtra("system_controller", system_controller);
+                                        intent.putExtra("merchant_controller", merchant_controller);
+                                        intent.putExtra("deal_controller", deal_controller);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        Intent intent = new Intent(getApplicationContext(), Register_Merchant.class);
+                                        intent.putExtra("system_controller", system_controller);
+                                        intent.putExtra("merchant_controller", merchant_controller);
+                                        intent.putExtra("deal_controller", deal_controller);
+                                        startActivity(intent);
+                                    }
                                 }
                             }).create().show();
                 }

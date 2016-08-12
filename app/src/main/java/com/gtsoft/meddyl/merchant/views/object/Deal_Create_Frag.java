@@ -254,7 +254,7 @@ public class Deal_Create_Frag extends Fragment_Controller
             {
                 successful = false;
                 error_title = "Dollar Amount";
-                error_message = "Maximum dollar amount is too low\n" +
+                error_message = "Maximum dollar value is too low\n" +
                         "\n" +
                         "Value must be between " + system_controller.getSystemSettingsObj().getDollarValueMin().toString() + " and " + system_controller.getSystemSettingsObj().getDollarValueMax().toString();
 
@@ -264,7 +264,7 @@ public class Deal_Create_Frag extends Fragment_Controller
             {
                 successful = false;
                 error_title = "Dollar Amount";
-                error_message = "Maximum dollar amount is too high\n" +
+                error_message = "Maximum dollar value is too high\n" +
                         "\n" +
                         "Value must be between " + system_controller.getSystemSettingsObj().getDollarValueMin().toString() + " and " + system_controller.getSystemSettingsObj().getDollarValueMax().toString();
 

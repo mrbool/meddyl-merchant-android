@@ -19,7 +19,8 @@
     <LinearLayout
         android:id="@+id/layName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <org.droidparts.widget.ClearableEditText
             android:id="@+id/edtFirstName"
@@ -39,19 +40,35 @@
             android:layout_weight=".50"
             style="@style/edit_text_name" />
 
-
     </LinearLayout>
 
     <org.droidparts.widget.ClearableEditText
         android:id="@+id/edtEmail"
         android:layout_marginTop="@dimen/small_space"
         android:layout_below="@+id/layName"
-        style="@style/edit_text_email" />
+        style="@style/edit_text_email"
+        android:visibility="gone"/>
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvName"
+        android:layout_below="@+id/edtEmail"
+        android:paddingTop="2dp"
+        android:layout_marginTop="@dimen/small_space"
+        style="@style/text_view_dark_gray_19"
+        android:visibility="gone"/>
+
+    <com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView
+        android:id="@+id/txvEmail"
+        android:layout_below="@+id/txvName"
+        android:paddingTop="2dp"
+        android:layout_marginTop="@dimen/small_space"
+        style="@style/text_view_dark_gray_19"
+        android:visibility="gone"/>
 
     <org.droidparts.widget.ClearableEditText
         android:id="@+id/edtPhone"
         android:layout_marginTop="@dimen/small_space"
-        android:layout_below="@+id/edtEmail"
+        android:layout_below="@+id/txvEmail"
         android:hint="Cell Phone"
         style="@style/edit_text_phone" />
 

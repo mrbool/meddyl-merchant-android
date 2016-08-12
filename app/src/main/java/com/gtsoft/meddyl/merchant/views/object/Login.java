@@ -182,21 +182,36 @@ public class Login extends View_Controller
 
                 if (successful)
                 {
-                    SharedPreferences.Editor editor = getSharedPreferences("app", MODE_PRIVATE).edit();
-                    editor.putString("user_name", user_name);
-                    editor.putString("password", password);
-                    editor.apply();
+                    if(merchant_controller.getMerchantContactObj().getMerchantContactId() != 0)
+                    {
+                        SharedPreferences.Editor editor = getSharedPreferences("app", MODE_PRIVATE).edit();
+                        editor.putString("user_name", user_name);
+                        editor.putString("password", password);
+                        editor.apply();
 
-                    system_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
-                    merchant_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
-                    deal_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
+                        system_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
+                        merchant_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
+                        deal_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
 
-                    Intent intent = new Intent(getApplicationContext(), Tab_Controller.class);
-                    intent.putExtra("system_controller", system_controller);
-                    intent.putExtra("merchant_controller", merchant_controller);
-                    intent.putExtra("deal_controller", deal_controller);
-                    intent.putExtra("selected_tab", 0);
-                    startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), Tab_Controller.class);
+                        intent.putExtra("system_controller", system_controller);
+                        intent.putExtra("merchant_controller", merchant_controller);
+                        intent.putExtra("deal_controller", deal_controller);
+                        intent.putExtra("selected_tab", 0);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        system_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
+                        merchant_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
+                        deal_controller.getLoginLogObj().setMerchantContactId(merchant_controller.getMerchantContactObj().getMerchantContactId());
+
+                        Intent intent = new Intent(getApplicationContext(), Register_Validation_Create.class);
+                        intent.putExtra("system_controller", system_controller);
+                        intent.putExtra("merchant_controller", merchant_controller);
+                        intent.putExtra("deal_controller", deal_controller);
+                        startActivity(intent);
+                    }
                 }
                 else
                 {

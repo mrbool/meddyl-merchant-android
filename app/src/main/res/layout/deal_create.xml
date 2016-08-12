@@ -70,7 +70,7 @@
                     android:layout_marginStart="@dimen/small_space"
                     android:layout_marginLeft="@dimen/small_space"
                     style="@style/text_view_dark_gray_19"
-                    android:text="Max Dollar Amount" />
+                    android:text="Max Dollar Value" />
 
                 <ImageView
                     android:id="@+id/imvQuestionMaxDollar"

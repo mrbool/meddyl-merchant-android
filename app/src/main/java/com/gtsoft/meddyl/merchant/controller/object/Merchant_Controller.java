@@ -336,6 +336,8 @@ public class Merchant_Controller extends Base_Controller implements Parcelable
 		merchant_contact_obj.setLoginLogObj(login_log_obj);
 		merchant_contact_obj.setContactObj(contact_obj);
 
+		String password = contact_obj.getPassword();
+
 		REST_MerchantService i_rest = new REST_MerchantService(merchant_service);
 		i_rest.Login(merchant_contact_obj);
 
@@ -349,7 +351,10 @@ public class Merchant_Controller extends Base_Controller implements Parcelable
 		else
 		{
 			system_successful_obj = i_rest.getJSONSuccessfulResponse().getSystemSuccessful();
+
 			merchant_contact_obj = (Merchant_Contact)i_rest.getJSONSuccessfulResponse().getDataObj();
+			contact_obj = merchant_contact_obj.getContactObj();
+			contact_obj.setPassword(password);
 		}
 	}
 

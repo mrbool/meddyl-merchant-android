@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.gtsoft.meddyl.merchant.R;
 import com.gtsoft.meddyl.merchant.model.object.Contact;
+import com.gtsoft.meddyl.merchant.system.gtsoft.GTTextView;
 import com.gtsoft.meddyl.merchant.system.gtsoft.TextWatcherPhone;
 import com.gtsoft.meddyl.merchant.system.gtsoft.Utils;
 import com.gtsoft.meddyl.merchant.views.base.View_Controller;
@@ -45,9 +48,40 @@ public class Register_Validation_Create extends View_Controller
 
         Set_Controller_Properties();
 
-
         ClearableEditText edtPhone = (ClearableEditText) findViewById(R.id.edtPhone);
         edtPhone.addTextChangedListener(new TextWatcherPhone(edtPhone));
+
+        Load_Data();
+    }
+
+    private void Load_Data()
+    {
+        // this avoids null error
+        if(merchant_controller.getContactObj() == null)
+            merchant_controller.setContactObj(new Contact());
+
+        if(merchant_controller.getContactObj().getContactId() != 0)
+        {
+            ((GTTextView) findViewById(R.id.txvName)).setText(merchant_controller.getContactObj().getFirstName() + merchant_controller.getContactObj().getLastName());
+            ((GTTextView) findViewById(R.id.txvEmail)).setText(merchant_controller.getContactObj().getEmail());
+
+            ((GTTextView) findViewById(R.id.txvName)).setVisibility(View.VISIBLE);
+            ((GTTextView) findViewById(R.id.txvEmail)).setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            ((LinearLayout) findViewById(R.id.layName)).setVisibility(View.VISIBLE);
+            ((ClearableEditText) findViewById(R.id.edtEmail)).setVisibility(View.VISIBLE);
+        }
+    }
+
+    protected void Cancel()
+    {
+        Intent intent = new Intent(getApplicationContext(), Main_View.class);
+        intent.putExtra("system_controller", system_controller);
+        intent.putExtra("merchant_controller", merchant_controller);
+        intent.putExtra("deal_controller", deal_controller);
+        startActivity(intent);
     }
 
     protected void Next()
@@ -58,21 +92,21 @@ public class Register_Validation_Create extends View_Controller
         phone = ((ClearableEditText) findViewById(R.id.edtPhone)).getText().toString().replaceAll("[^\\d]", "");
 
         successful = true;
-        if(first_name.trim().length() == 0)
+        if(first_name.trim().length() == 0 && merchant_controller.getContactObj().getContactId() == 0)
         {
             successful = false;
             error_title = "First Name";
             error_message = "Please enter your first name";
             ((ClearableEditText) findViewById(R.id.edtFirstName)).requestFocus();
         }
-        else if(last_name.trim().length() == 0)
+        else if(last_name.trim().length() == 0 && merchant_controller.getContactObj().getContactId() == 0)
         {
             successful = false;
             error_title = "Last Name";
             error_message = "Please enter your last name";
             ((ClearableEditText) findViewById(R.id.edtLastName)).requestFocus();
         }
-        else if(!Utils.isEmailValid(email))
+        else if(!Utils.isEmailValid(email) && merchant_controller.getContactObj().getContactId() == 0)
         {
             successful = false;
             error_title = "Email";
@@ -128,13 +162,21 @@ public class Register_Validation_Create extends View_Controller
         @Override
         protected Boolean doInBackground(Void... login_log_data)
         {
-            Contact contact_obj = new Contact();
-            contact_obj.setFirstName(first_name);
-            contact_obj.setLastName(last_name);
-            contact_obj.setEmail(email);
-            contact_obj.setPhone(phone);
+            if(merchant_controller.getContactObj().getContactId() == 0)
+            {
+                Contact contact_obj = new Contact();
+                contact_obj.setFirstName(first_name);
+                contact_obj.setLastName(last_name);
+                contact_obj.setEmail(email);
+                contact_obj.setPhone(phone);
 
-            merchant_controller.setContactObj(contact_obj);
+                merchant_controller.setContactObj(contact_obj);
+            }
+            else
+            {
+                merchant_controller.getContactObj().setPhone(phone);
+            }
+
             merchant_controller.Create_Validation();
             successful = merchant_controller.getSuccessful();
             system_error_obj = merchant_controller.getSystemErrorObj();
